@@ -1,0 +1,91 @@
+{
+  "v": 12,
+  "name": "Testes",
+  "folders": [],
+  "requests": [
+    {
+      "v": "17",
+      "name": "Adicionar produto",
+      "method": "POST",
+      "endpoint": "http://localhost:3000/produtos",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"nome\": \"Bolinha de queijo\",\n  \"preco\": 4\n}"
+      },
+      "requestVariables": [],
+      "responses": {
+        "Adicionar produto": {
+          "name": "Adicionar produto",
+          "originalRequest": {
+            "v": "6",
+            "name": "Adicionar produto",
+            "method": "POST",
+            "endpoint": "http://localhost:3000/produtos",
+            "headers": [],
+            "params": [],
+            "body": {
+              "contentType": "application/json",
+              "body": "{\n  \"nome\": \"Bolinha de queijo\",\n  \"preco\": 4\n}"
+            },
+            "auth": {
+              "authType": "none",
+              "authActive": true
+            },
+            "requestVariables": []
+          },
+          "status": "200 OK",
+          "code": 200,
+          "headers": [
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            },
+            {
+              "key": "Content-Length",
+              "value": "32"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 01 Jun 2026 01:36:27 GMT"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20-EV+QaiJA12XcbNe6c9o/C86SbH8\""
+            }
+          ],
+          "body": "{\"message\":\"Produto cadastrado\"}"
+        }
+      },
+      "description": null
+    }
+  ],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "headers": [],
+  "variables": [],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}

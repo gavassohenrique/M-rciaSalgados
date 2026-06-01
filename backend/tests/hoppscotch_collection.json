@@ -1,0 +1,91 @@
+{
+  "v": 12,
+  "name": "Salgados API",
+  "folders": [],
+  "requests": [
+    {
+      "v": "17",
+      "endpoint": "http://localhost:3000/produtos",
+      "name": "Listar produtos",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "pw.test(\"Status Code é 200\", () => {\n  pw.expect(pw.response.status).toBe(200);\n});\n\npw.test(\"Resposta deve ser uma lista\", () => {\n  pw.expect(pw.response.body).toBeType(\"array\");\n});",
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": "Teste responsável por verificar se a API retorna corretamente a lista de produtos cadastrados."
+    },
+    {
+      "v": "17",
+      "endpoint": "http://localhost:3000/produtos",
+      "name": "Cadastrar produto válido",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true
+        }
+      ],
+      "method": "POST",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "pw.test(\"Status Code é 200 ou 201\", () => {\n  pw.expect([200, 201]).toInclude(pw.response.status);\n});\n\npw.test(\"Resposta deve confirmar cadastro\", () => {\n  pw.expect(pw.response.body).toBeDefined();\n});",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"nome\": \"Coxinha\",\n  \"preco\": 5\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": "Teste responsável por cadastrar um produto válido no sistema."
+    },
+    {
+      "v": "17",
+      "endpoint": "http://localhost:3000/produtos",
+      "name": "Cadastrar produto sem nome",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true
+        }
+      ],
+      "method": "POST",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "pw.test(\"Status Code deve indicar erro ou validação\", () => {\n  pw.expect([400, 422, 500]).toInclude(pw.response.status);\n});",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"nome\": \"\",\n  \"preco\": 5\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": "Teste negativo para verificar comportamento da API ao tentar cadastrar produto sem nome."
+    }
+  ],
+  "headers": [],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "variables": [],
+  "description": "Coleção de testes de API do sistema de gestão e publicidade de salgados.",
+  "preRequestScript": "",
+  "testScript": ""
+}

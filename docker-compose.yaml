@@ -1,14 +1,14 @@
-version: '3.9'
-
 services:
   backend:
     build: ./backend
-    image: salgados-backend
     container_name: backend_app
     ports:
       - "3000:3000"
     environment:
       - DB_HOST=db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=appdb
     depends_on:
       - db
 
@@ -16,7 +16,7 @@ services:
     build: ./frontend
     container_name: frontend_app
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - backend
 
@@ -28,7 +28,5 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: appdb
-    volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
