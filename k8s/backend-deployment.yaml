@@ -1,32 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: backend
-
 spec:
   replicas: 2
-
   selector:
     matchLabels:
       app: backend
-
   template:
     metadata:
       labels:
         app: backend
-
     spec:
       containers:
         - name: backend
-          image: ossavag/backend-app:latest
-
+          image: marcia-salgados-backend:local
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3000
-
+            - containerPort: 5000
           env:
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: app-config
                   key: DB_HOST
+            - name: DB_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: appdb
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: POSTGRES_PASSWORD
