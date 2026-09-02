@@ -1,9 +1,86 @@
-<h1>Salgados</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcia Salgados | Controle de Estoque</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Marcia Salgados</h1>
+      <p>Cadastro e controle de estoque</p>
+      <span id="status" class="status">Verificando conexão...</span>
+    </header>
 
-<ul id="lista"></ul>
+    <section class="card">
+      <h2>Cadastrar produto</h2>
+      <form id="produtoForm" novalidate>
+        <div class="grid">
+          <label>Nome
+            <span class="tooltip" title="Digite o nome do salgado. Ex.: Coxinha">ⓘ</span>
+            <input id="nome" maxlength="100" required placeholder="Ex.: Coxinha">
+            <small>Até 100 caracteres.</small>
+          </label>
+          <label>Preço
+            <span class="tooltip" title="Informe o preço em reais. O sistema aceita somente valores maiores que zero.">ⓘ</span>
+            <input id="preco" inputmode="decimal" required placeholder="R$ 5,00">
+          </label>
+          <label>Estoque inicial
+            <span class="tooltip" title="Quantidade disponível no momento do cadastro.">ⓘ</span>
+            <input id="estoque" type="number" min="0" step="1" value="0" required>
+          </label>
+          <label>Estoque mínimo
+            <span class="tooltip" title="Quando o estoque ficar neste valor ou abaixo dele, o sistema sinaliza estoque baixo.">ⓘ</span>
+            <input id="estoqueMinimo" type="number" min="0" step="1" value="5" required>
+          </label>
+        </div>
+        <button type="submit">Cadastrar produto</button>
+        <div id="produtoMsg" class="message"></div>
+      </form>
+    </section>
 
-<input id="nome" placeholder="Nome">
-<input id="preco" placeholder="Preço">
-<button onclick="adicionar()">Adicionar</button>
+    <section class="card">
+      <h2>Movimentar estoque</h2>
+      <form id="movForm" novalidate>
+        <div class="grid">
+          <label>Produto
+            <select id="produtoId" required></select>
+          </label>
+          <label>Tipo
+            <span class="tooltip" title="Entrada aumenta o estoque. Saída reduz o estoque e pode ser vinculada a um pedido.">ⓘ</span>
+            <select id="tipo" required>
+              <option value="ENTRADA">Entrada</option>
+              <option value="SAIDA">Saída</option>
+            </select>
+          </label>
+          <label>Quantidade
+            <input id="quantidade" type="number" min="1" step="1" required placeholder="Ex.: 5">
+          </label>
+          <label>Pedido (opcional)
+            <span class="tooltip" title="Informe o número do pedido para deixar a saída rastreável.">ⓘ</span>
+            <input id="pedidoId" maxlength="50" placeholder="Ex.: PED-001">
+          </label>
+        </div>
+        <label>Motivo
+          <input id="motivo" maxlength="200" placeholder="Ex.: Pedido do cliente / reposição">
+        </label>
+        <button type="submit">Registrar movimentação</button>
+        <div id="movMsg" class="message"></div>
+      </form>
+    </section>
 
-<script src="script.js"></script>
+    <section class="card">
+      <h2>Estoque atual</h2>
+      <div id="lista" class="lista"></div>
+    </section>
+
+    <section class="card">
+      <h2>Histórico de movimentações</h2>
+      <div id="historico" class="historico"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
