@@ -1,15 +1,7 @@
-FROM node:18 AS build
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build || true
-
 FROM nginx:alpine
 
-COPY . /usr/share/nginx/html
+COPY index.html script.js style.css /usr/share/nginx/html/
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
 EXPOSE 80
 
